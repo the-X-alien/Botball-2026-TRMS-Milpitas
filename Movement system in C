@@ -1,12 +1,24 @@
 Yo
+
 Instead of using
-1. motor(0, 50)
-2. motor(1, 50)
-3. msleep(500)
+1. motor(0, 50);
+2. motor(1, 50);
+3. msleep(500);
 
 use
-1. mav(0, 750)
-2. mav(1, 750)
-3. msleep(500)
-
-because mav is move at velocity so it will move at the same speed
+#include <stdlib.h>
+1. void drive(int distance, int speed){
+2.   cmpc(0);
+3.   while(abs(gmpc(0)) < distance){
+4.     mav(0, speed);
+5.     mav(1, speed);
+6.   }
+7.   mav(0, 0);
+8.   mav(1, 0);
+9.   msleep(20);
+10. }
+mav is move at velocity so it will move at the same speed no matter the battery of the motor
+gmpc gets motor position in ticks which can be translated to distance, 
+so you can edit the speed of the mav without the distance changing
+cmpc clears the motor position so it goes how much you want it to go
+finally the thing at the end is to make sure it doesn't drift to a stop
