@@ -1,0 +1,12 @@
+Yo
+Instead of using
+1. motor(0, 50)
+2. motor(1, 50)
+3. msleep(500)
+
+use
+1. mav(0, 750)
+2. mav(1, 750)
+3. msleep(500)
+
+because mav is move at velocity so it will move at the same speed
