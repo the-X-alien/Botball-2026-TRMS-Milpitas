@@ -1,0 +1,27 @@
+Yo I'm back
+We're doing a line follow tutorial
+BTW we need to pop a sensor under the bot so it can actually detect the lines
+Ok here's the code
+Explanation Later
+
+1. void line_follow(int distance, int speed, int port){
+2.   cmpc(port);
+3.   while(abs(gmpc(port)) < distance){
+4.     int error = analog(0) - 1700;
+5.     float speed_mod = error * 0.05;
+6.     mav(0, speed-speed_mod);
+7.     mav(1, speed+speed_mod);
+8.       }
+9.     }
+10.    mav(0, 0);
+11.    mav(1, 0);
+12.    msleep(20);
+13.  }
+
+Ok we start off by clearing the motor position of the port, and asking it to go forward till our specified position
+There, we use our analog sensor to find a sort of "grey" area, an area on the border of black and white
+(We have to test what this num is, calculate it by finding white analog val and black analog val, then averaging)
+Then, it finds the margin of error from the line, then slowly turns that direction till you hit the edge
+(You can edit the number we multiply on speed_mod, it might be too drastic or too straight)
+Then, when it's done line following, it stops.
+YOU ARE WELCOME ISHAAN
