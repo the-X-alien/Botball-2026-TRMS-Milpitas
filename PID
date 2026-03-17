@@ -1,0 +1,50 @@
+A proportional–integral–derivative controller (PID controller or three-term controller) is a feedback-based control loop mechanism 
+commonly used to manage machines and processes that require continuous control and automatic adjustment. (Wikipedia)
+
+PID has 3 terms 
+P: Proportional (Multiply remaining distance)
+I: Integral (Add up remaining distance)
+D: Derivative (Calculate change in remaining distance)
+
+For the rest of this, I will call the remaining distance error.
+
+So first, you initialize 3 constants: Kp, Ki, and Kd
+Next, you figure out the initial error (distance needed to travel).
+
+The proportional controller will be kp*error
+
+The integral controller is the sum of the previous error and the current error
+
+The derivative controller is the difference between the current error and the previous error
+
+Psudocode:
+KP = 1.0   # Proportional Gain
+KI = 0.1   # Integral Gain
+KD = 0.05  # Derivative Gain
+
+#initialization
+last_error = 0
+integral = 0
+
+while abs(error)>0.1:
+    # 1. Get input
+    setpoint = read_setpoint()
+    measured_value = read_sensor()
+    
+    # 2. Calculate error
+    error = setpoint - measured_value
+    
+    # 3. Calculate terms
+    integral = integral + (error * dt)
+    derivative = (error - last_error) / dt
+    
+    # 4. Calculate output
+    output = (KP * error) + (KI * integral) + (KD * derivative)
+    
+    # 5. Apply output and save state
+    send_to_actuator(output)
+    last_error = error
+    
+    # 6. Wait for next time step
+    sleep(dt)
+
