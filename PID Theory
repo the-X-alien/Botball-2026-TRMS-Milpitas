@@ -1,5 +1,5 @@
-A proportional–integral–derivative controller (PID controller or three-term controller) is a feedback-based control loop mechanism 
-commonly used to manage machines and processes that require continuous control and automatic adjustment. (Wikipedia)
+A proportional–integral–derivative controller (PID controller or three-term controller) is a feedback-based control loop.
+It is used to minimize error while maintaining a high speed during movements.
 
 PID has 3 terms 
 P: Proportional (Multiply remaining distance by a constant)
