@@ -54,5 +54,5 @@ while abs(error)>0.1:
     sleep(dt)
 
 This might feel kinda hard, so here is a nice video on it.
-https://www.youtube.com/watch?v=KMSJviT2jI8
+https://www.youtube.com/watch?v=KMSJviT2jI8 (Seaquam Robotics)
 
