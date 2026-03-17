@@ -1,5 +1,6 @@
 Yo
 This one isn't fully necessary but it's there if you need to square-up on a black line without PVC being present
+It's also pretty short
 It's kinda like line follow
 We need 2 light sensors for this, evenly spaced from the center
 Also when you define the port numbers the format is "#define X Y" X is name and Y is value
@@ -12,19 +13,19 @@ Ok lets go
 void line_square_up(){
   while(analog(RIGHT) < 1700 || analog(LEFT) < 1700){
     if(analog(RIGHT) < 1700){
-      mav(RIGHT, 500)
+      mav(RIGHT, 500);
     }
       else {
-      mav(RIGHT, -250)
+      mav(RIGHT, -250);
     }
     if(analog(LEFT) < 1700){
-      mav(LEFT, 500)
+      mav(LEFT, 500);
     }
     else {
-      mav(LEFT, -250)
+      mav(LEFT, -250);
     }
-  mav(LEFT, 0)
-  mav(RIGHT, 0)
-  msleep(50)
+  mav(LEFT, 0);
+  mav(RIGHT, 0);
+  msleep(50);
 
 If you saw the last 3 explanations you should be able to figure out what's going on here
