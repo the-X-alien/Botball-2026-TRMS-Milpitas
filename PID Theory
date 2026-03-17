@@ -2,22 +2,27 @@ A proportional–integral–derivative controller (PID controller or three-term 
 commonly used to manage machines and processes that require continuous control and automatic adjustment. (Wikipedia)
 
 PID has 3 terms 
-P: Proportional (Multiply remaining distance)
+P: Proportional (Multiply remaining distance by a constant)
 I: Integral (Add up remaining distance)
 D: Derivative (Calculate change in remaining distance)
 
-For the rest of this, I will call the remaining distance error.
+For the rest of this, I will call the remaining distance to the target "the error".
 
 So first, you initialize 3 constants: Kp, Ki, and Kd
+These constants control how the robot will act during movements. 
+They will need to be tuned for the PID algorithm to work effectively.
+
 Next, you figure out the initial error (distance needed to travel).
 
-The proportional controller will be kp*error
+The proportional controller will be Kp*error
 
 The integral controller is the sum of the previous error and the current error
 
 The derivative controller is the difference between the current error and the previous error
 
-Psudocode:
+The robot's speed is the sum of the proportional and integral controllers minus the derivative controllers.
+
+Pseudocode:
 KP = 1.0   # Proportional Gain
 KI = 0.1   # Integral Gain
 KD = 0.05  # Derivative Gain
@@ -39,7 +44,7 @@ while abs(error)>0.1:
     derivative = (error - last_error) / dt
     
     # 4. Calculate output
-    output = (KP * error) + (KI * integral) + (KD * derivative)
+    output = (KP * error) + (KI * integral) - (KD * derivative)
     
     # 5. Apply output and save state
     send_to_actuator(output)
@@ -47,4 +52,7 @@ while abs(error)>0.1:
     
     # 6. Wait for next time step
     sleep(dt)
+
+This might feel kinda hard, so here is a nice video on it.
+https://www.youtube.com/watch?v=KMSJviT2jI8
 
